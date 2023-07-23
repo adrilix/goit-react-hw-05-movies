@@ -1,27 +1,62 @@
 
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://pixabay.com/api/';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+const apiKey = 'd3617e758f1c3082c7bc2da26a77c463';
 
-axios.defaults.params = {
-    key: '29627858-41c1c6901e5456b7eb4365fd8',
-    image_type: 'photo',
-    orientation: 'horizontal',
-    per_page: '12',
+export const fetchTrends = async () => {
+    try {
+        const { data } = await axios.get(`trending/movie/day?api_key=${apiKey}`);
+        const trends = data.results;
+        return trends;
+    } catch (error) {
+        console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+    }
 };
 
-async function getImagePixabay (pageNumber, input) {
+export const fetchMoviesBySearch = async (searchQuery, currentPage) => {
     try {
-        const { data } = await axios.get(``, {
-            params: {
-                page: pageNumber,
-                q: input,
-            },
-        });
+        const { data } = await axios.get(`search/movie?api_key=${apiKey}&query=${searchQuery}&page=${currentPage}&language=en-US`);
+        const results = data.results;
+        return results;
+    } catch (error) {
+        console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+    }
+};
+
+export const fetchMoviesById = async (id) => {
+    try {
+        const { data } = await axios.get(`/movie/${id}?api_key=${apiKey}&language=en-US`);
         return data;
     } catch (error) {
-        console.error(error);
+        console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
     }
-}
+};
 
-export default getImagePixabay;   
+export const fetchCast = async (id) => {
+    try {
+        const { data } = await axios.get(`/movie/${id}/credits?api_key=${apiKey}&language=en-US`);
+        return data;
+    } catch (error) {
+        console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+    }
+};
+
+export const fetchReviews = async (id) => {
+    try {
+        const { data } = await axios.get(`/movie/${id}/reviews?api_key=${apiKey}&language=en-US&page=1`);
+        return data;
+    } catch (error) {
+        console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+    }
+};
+
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+    fetchTrends,
+    fetchMoviesBySearch,
+    fetchMoviesById,
+    fetchCast,
+    fetchReviews,
+};
