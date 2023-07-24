@@ -17,11 +17,12 @@ const HomePage = () => {
     }, []);
 
     const fetchData = async() => {
-        setIsLoading(true);
+        setIsLoading(true); 
 
         try{
             const movies = await api.fetchTrends();
             setTrends(movies);
+            console.log(movies);
         } catch (error) {
             console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
             setError(error.mesage);
@@ -46,7 +47,7 @@ const HomePage = () => {
                 : (
                     <Message>
                         <h2>
-                            сервіс тимчасово втрачено спробуйте, будьласка, пізніше
+                            сервіс тимчасово втрачено спробуйте, будь ласка, пізніше
                         </h2>
                     </Message>)
             }

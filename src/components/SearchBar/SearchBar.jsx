@@ -5,45 +5,45 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+    const [query, setQuery] = useState('');
 
-  const handleSearchInput = e => {
-    const { value } = e.currentTarget;
+    const handleSearchInput = e => {
+        const { value } = e.currentTarget;
 
-    setQuery(value);
-  };
+        setQuery(value);
+    };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+    const handleSubmit = e => {
+        e.preventDefault();
 
-    if (!query.trim()) {
-      toast.info('Будь ласка, напишіть свій запит', {
-        autoClose: 2000,
-      });
-      return;
-    }
-    onSearch(query);
-    resetForm();
-  };
+        if (!query.trim()) {
+            toast.info('Будь ласка, напишіть свій запит', {
+                autoClose: 2000,
+            });
+            return;
+        }
+        onSearch(query);
+        resetForm();
+    };
 
-  const resetForm = () => setQuery('');
+    const resetForm = () => setQuery('');
 
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="query"
-          value={query}
-          onChange={handleSearchInput}
-          autoComplete="off"
-        />
-        <button type='submit'>
-            <FaSearch />
-        </button>
-      </form>
-    </>
-  );
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="query"
+                    value={query}
+                    onChange={handleSearchInput}
+                    autoComplete="off"
+                />
+                <button type='submit'>
+                    <FaSearch />
+                </button>
+            </form>
+        </>
+    );
 };
 
 SearchBar.propTypes = {

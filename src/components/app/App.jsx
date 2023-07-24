@@ -3,29 +3,13 @@ import {lazy, Suspense} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom'
 import { LoaderSpinner } from 'components/Loader/Loader';
 
-const Layout = lazy(()=>
-      import('../Layout/Layout')
-); 
+const Layout = lazy(()=>import('../Layout/Layout'));
+const HomePage = lazy(() =>import('../../Pages/HomePage'));
+const MoviesPage = lazy(() =>import('../../Pages/MoviesPage'));
+const MovieDetailsPage = lazy(() =>import('../../Pages/MovieDetailsPage'));
+const Cast = lazy(() =>import('../Cast/Cast'));
+const Reviews = lazy(() =>import('../Reviews/Reviews'));
 
-const HomePage = lazy(() =>
-    import('../../Pages/HomePage')
-    );
-
-const MoviesPage = lazy(() =>
-    import('../../Pages/MoviesPage')
-    );
-
-const MovieDetailsPage = lazy(() =>
-    import('../../Pages/MovieDetailsPage')
-    );
-
-const Cast = lazy(() =>
-    import('../Cast/Cast')
-    );
-
-const Reviews = lazy(() =>
-    import('../Reviews/Reviews')
-    );
 export default function App ()  {
   return (
       <Suspense fallback={<LoaderSpinner />}>
