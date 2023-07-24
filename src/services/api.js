@@ -24,7 +24,7 @@ export const fetchMoviesBySearch = async (searchQuery, currentPage) => {
     }
 };
 
-export const fetchMoviesById = async (id) => {
+export const fetchMovieById = async (id) => {
     try {
         const { data } = await axios.get(`/movie/${id}?api_key=${apiKey}&language=en-US`);
         return data;
@@ -56,7 +56,7 @@ export const fetchReviews = async (id) => {
 export default {
     fetchTrends,
     fetchMoviesBySearch,
-    fetchMoviesById,
+    fetchMovieById,
     fetchCast,
     fetchReviews,
 };
