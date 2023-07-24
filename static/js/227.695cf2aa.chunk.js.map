@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/227.695cf2aa.chunk.js","mappings":"8IAYA,UARA,WAKI,MAAQ,QACZ,C","sources":["Pages/MoviesPage.jsx"],"sourcesContent":["// import { useState, useEffect } from \"react\";\n\n\n\nfunction MoviesPage () {\n    \n\n\n\n    return (' films')\n}\n\nexport default MoviesPage;"],"names":[],"sourceRoot":""}

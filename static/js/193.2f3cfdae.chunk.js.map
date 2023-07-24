@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/193.2f3cfdae.chunk.js","mappings":"8IAYA,UARA,WAKI,MAAQ,cACZ,C","sources":["Pages/MovieDetailsPage.jsx"],"sourcesContent":["// import { useState, useEffect } from \"react\";\n\n\n\nfunction MovieDetailsPage () {\n    \n\n\n\n    return ('details film')\n}\n\nexport default MovieDetailsPage;"],"names":[],"sourceRoot":""}
