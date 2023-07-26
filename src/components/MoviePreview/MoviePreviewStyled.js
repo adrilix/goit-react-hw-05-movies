@@ -40,7 +40,7 @@ export const VoteWraperStyled = styled.p`
     font-size: 14px;
     opacity: 0.9;
 `
-export const VoteCountStyled = styled.p`
+export const VoteCountStyled = styled.span`
         text-shadow: 1px 0 1px #8c1b21, 0 1px 1px #8c1b21, -1px 0 1px #8c1b21, 0 -1px 1px #8c1b21;
 `
 export const TitleStyled = styled.p`

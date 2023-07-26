@@ -16,7 +16,8 @@ export const fetchTrends = async () => {
 
 export const fetchMoviesBySearch = async (searchQuery, currentPage) => {
     try {
-        const { data } = await axios.get(`search/movie?api_key=${apiKey}&query=${searchQuery}&page=${currentPage}&language=en-US`);
+        const { data } = await axios.get(
+            `search/movie?api_key=${apiKey}&query=${searchQuery}&page=${currentPage}&language=en-US`);
         const results = data.results;
         return results;
     } catch (error) {

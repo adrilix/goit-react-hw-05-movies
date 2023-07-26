@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
         setQuery(value);
     };
 
-    const handleSubmit = e => {
+    function handleSubmit(e) {
         e.preventDefault();
 
         if (!query.trim()) {
@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }) => {
         }
         onSearch(query);
         resetForm();
-    };
+    }
 
     const resetForm = () => setQuery('');
 

@@ -9,35 +9,36 @@ import Message from "components/Message/Message";
 const HomePage = () => {
     const[trends, setTrends] = useState ([]);
     const[isLoading, setIsLoading] = useState(false);
-      // eslint-disable-next-line
+    // eslint-disable-next-line no-unused-vars
     const[error,setError] = useState('');
 
     useEffect(()=>{
+
+        const fetchData = async() => {
+            try{
+                setIsLoading(true); 
+                const movies = await api.fetchTrends();
+                setTrends(movies);
+                console.log(movies);
+            } catch (error) {
+                console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+                setError(error.mesage);
+            } finally {
+                setIsLoading(false);
+            }
+        };
         fetchData()
     }, []);
 
-    const fetchData = async() => {
-        setIsLoading(true); 
-
-        try{
-            const movies = await api.fetchTrends();
-            setTrends(movies);
-            console.log(movies);
-        } catch (error) {
-            console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
-            setError(error.mesage);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+   
 
     return(
         <main>
             <h1
             style={{
                 textAlign: 'center',
-                color: 'wheat',
-                fontSize: '36px',
+                color: 'greenlight',
+                fontSize: '32px',
                 textShadow: '1px 0 1px black',
             }}>
                 Тренди сьогодення
@@ -47,7 +48,7 @@ const HomePage = () => {
                 : (
                     <Message>
                         <h2>
-                            сервіс тимчасово втрачено спробуйте, будь ласка, пізніше
+                            сервіс трендофільмів тимчасово втрачено. спробуйте, будь ласка, пізніше
                         </h2>
                     </Message>)
             }

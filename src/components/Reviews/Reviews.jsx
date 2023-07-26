@@ -16,23 +16,24 @@ function Reviews () {
     const{movieId} = useParams();
 
     useEffect(()=>{
+        const fetchData = async () => {
+            setIsLoading(true);
+    
+            try {
+                const { results } = await api.fetchReviews(movieId);
+                setReviews(results);
+              } catch (error) {
+                console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+                setError(error.message);
+              } finally {
+                setIsLoading(false);
+              }
+        };
         fetchData();
-    // eslint-disable-next-line
-    }, [])
 
-    const fetchData = async () => {
-        setIsLoading(true);
+    }, [movieId])
 
-        try {
-            const { results } = await api.fetchReviews(movieId);
-            setReviews(results);
-          } catch (error) {
-            console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
-            setError(error.message);
-          } finally {
-            setIsLoading(false);
-          }
-    };
+
 
 
     return (

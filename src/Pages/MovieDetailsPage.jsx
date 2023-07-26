@@ -18,34 +18,35 @@ function MovieDetailsPage() {
     const { movieId } = useParams();
 
     useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+    
+            try {
+                const result = await api.fetchMovieById(movieId);
+                setMovieInfo(result);
+            } catch (error) {
+                console.error(
+                    'Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :',
+                    error
+                );
+                setError(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
         fetchData();
-        // eslint-disable-next-line
-    }, []);
 
-    const fetchData = async () => {
-        setIsLoading(true);
+    }, [movieId]);
 
-        try {
-            const result = await api.fetchMovieById(movieId);
-            setMovieInfo(result);
-        } catch (error) {
-            console.error(
-                'Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :',
-                error
-            );
-            setError(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+
 
     return (
         <>
-            <GoBackButton to={OnGoBack} />
+            <GoBackButton to={OnGoBack ?? "/"} />
             {movieInfo && <MovieDetails movieInfo={movieInfo} />}
             {movieInfo && <MovieNavigation />}
             {isLoading && <LoaderSpinner />}
-
+ 
             <Outlet />
         </>
     );

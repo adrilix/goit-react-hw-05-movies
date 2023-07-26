@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
-import { FaChevronRight } from 'react-icons/fa';
-import { LoadMoreButtonStyled } from './LoadMoreButtonStyled';
+// import { FaChevronRight } from 'react-icons/fa';
+// import { LoadMoreButtonStyled } from './LoadMoreButtonStyled';
 
 
 const LoadMoreButton = ({onClick}) => {
         <div>
-                <LoadMoreButtonStyled onClick={onClick} type='button'>
+                {/* <LoadMoreButtonStyled type='button' onClick={onClick} >
                         <FaChevronRight />
                         <span>Завантаж ще...</span>
                         <FaChevronRight />
-                </LoadMoreButtonStyled>
+                </LoadMoreButtonStyled> */}
+                <button type='button' onClick={onClick}></button>
         
         </div>
 };

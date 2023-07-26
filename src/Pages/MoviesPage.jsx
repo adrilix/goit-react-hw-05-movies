@@ -4,10 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from "components/SearchBar/SearchBar";
 import MoviesList from "components/MoviesList/MoviesList";
-import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
+
 import { LoaderSpinner } from "components/Loader/Loader";
 
 import api from "services/api";
+import LoadMoreButton from "components/LoadMoreButton/LoadMoreButton";
 
 
 function MoviesPage() {
@@ -24,38 +25,44 @@ function MoviesPage() {
     const [error, setError] = useState('');
 
     useEffect(() => {
+
+        const getMovies = async () => {
+            if(!searchQuery){
+                return;
+            }
+            setIsLoading(true);
+
+            try {
+                const results = await api.fetchMoviesBySearch(searchQuery, page);
+                if (results.length === 0) {
+                    toast.info('Нічого не знайшлося за запитом 🙄', {
+                        autoClose: 2000,
+                    });
+                    navigate('/movies');
+                    return;
+                }
+                setMovies(prev => [...prev, ...results]);
+                // setPage(prev => prev + 1);
+                setIsLoading(true);
+
+            } catch (error) {
+                console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+                setError(error.mesage);
+
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        console.log(page);
         if (searchQuery) {
             getMovies()
         }
-        // eslint-disable-next-line
-    }, [searchQuery])
 
-    const getMovies = async () => {
-        setIsLoading(true);
+    }, [navigate, page, searchQuery])
 
-        try {
-            const results = await api.fetchMoviesBySearch(searchQuery, page);
-
-            if (results.length === 0) {
-                toast.info('Нічого не знайшлося за запитом 🙄', {
-                    autoClose: 2000,
-                });
-                navigate('/movies');
-                return;
-            }
-
-            setMovies(prev => [...prev, ...results]);
-            setPage(prev => prev + 1);
-            setIsLoading(true);
-
-        } catch (error) {
-            console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
-            setError(error.mesage);
-
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const onClick = () => {
+        setPage(prev => prev + 1);
+    }
 
     const onChangeQuery = query => {
         setMovies([]);
@@ -72,13 +79,16 @@ function MoviesPage() {
 
     return (
         <>
-            <SearchBar onSearch={onChangeQuery}/>
-            <MoviesList movies={movies}/>
-            {movies.length > 0 && <LoadMoreButton onClick={getMovies}/>}
+            <p>Пошук фільмів</p>
+            <LoadMoreButton onClick={onClick}></LoadMoreButton>
+            
+            <SearchBar onSearch={onChangeQuery} />
+            <MoviesList movies={movies} />
+            <LoadMoreButton onClick={onClick} />
             {isLoading && <LoaderSpinner />}
 
-            <ToastContainer position="top-right" theme="colored"/>
-        
+            <ToastContainer position="top-right" theme="colored" />
+
         </>
     )
 }
