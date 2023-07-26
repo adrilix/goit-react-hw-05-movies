@@ -53,7 +53,6 @@ function MoviesPage() {
                 setIsLoading(false);
             }
         };
-        console.log(page);
         if (searchQuery) {
             getMovies()
         }

@@ -19,7 +19,6 @@ const HomePage = () => {
                 setIsLoading(true); 
                 const movies = await api.fetchTrends();
                 setTrends(movies);
-                console.log(movies);
             } catch (error) {
                 console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
                 setError(error.mesage);
