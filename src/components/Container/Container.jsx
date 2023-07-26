@@ -2,12 +2,8 @@ import PropTypes from 'prop-types';
 import { ContainerStyled } from './ContainerStyled';
 
 const Container = ({children}) => {
-    <ContainerStyled>{children}</ContainerStyled>
+   return <ContainerStyled>{children}</ContainerStyled>
 }
-
-Container.defaultProps = {
-    children : [],
-};
 
 Container.propTypes = {
     children : PropTypes.node,

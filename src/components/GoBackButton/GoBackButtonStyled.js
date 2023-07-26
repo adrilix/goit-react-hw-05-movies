@@ -6,7 +6,7 @@ export const ButtonBackStyled = styled.button`
     align-items: center;
     height: 32px;
     width: 120px;
-    font-size: 18px;
+    font-size: 10px;
     font-weight: bold;
     border: none;
     border-radius: 4px;

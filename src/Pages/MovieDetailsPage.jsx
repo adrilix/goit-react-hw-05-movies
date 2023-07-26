@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation, Outlet } from 'react-router-dom';
 import MovieDetails from 'components/MovieDetails/MovieDetails';
 import MovieNavigation from 'components/MovieNavigation/MovieNavigation';
@@ -11,10 +11,9 @@ function MovieDetailsPage() {
     const [isLoading, setIsLoading] = useState(false);
     // eslint-disable-next-line
     const [error, setError] = useState(null);
-    const location = useLocation;
 
-    const OnGoBack = location.state?.from ?? '/';
-
+    const location = useLocation();
+    const backLocationRef = useRef(location.state?.from);
     const { movieId } = useParams();
 
     useEffect(() => {
@@ -42,7 +41,7 @@ function MovieDetailsPage() {
 
     return (
         <>
-            <GoBackButton to={OnGoBack ?? "/"} />
+            <GoBackButton  to={backLocationRef.current ?? '/'} />
             {movieInfo && <MovieDetails movieInfo={movieInfo} />}
             {movieInfo && <MovieNavigation />}
             {isLoading && <LoaderSpinner />}

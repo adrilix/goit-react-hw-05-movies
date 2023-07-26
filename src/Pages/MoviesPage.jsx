@@ -80,8 +80,7 @@ function MoviesPage() {
     return (
         <>
             <p>Пошук фільмів</p>
-            <LoadMoreButton onClick={onClick}></LoadMoreButton>
-            
+            <LoadMoreButton onClick={onClick} />
             <SearchBar onSearch={onChangeQuery} />
             <MoviesList movies={movies} />
             <LoadMoreButton onClick={onClick} />
