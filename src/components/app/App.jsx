@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { LoaderSpinner } from 'components/Loader/Loader';
-import PageNotFound from 'Pages/PageNotFound';
+// import PageNotFound from 'Pages/PageNotFound';
 import AppBar from 'components/AppBar/AppBar';
 import Container from 'components/Container/Container';
 import HomePage from 'Pages/HomePage';
@@ -29,8 +29,8 @@ export default function App() {
                 <Route path="cast" element={<Cast />} />
                 <Route path="reviews" element={<Reviews />} />
               </Route>
+              <Route path="*" element={<HomePage />} />
 
-              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Suspense>
         </main>

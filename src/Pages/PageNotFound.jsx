@@ -1,13 +1,18 @@
+
+
+
+
+
 const PageNotFound = () =>{
     <h1 style={{
-        padding: 20,
-        textAlign: 'center',
-        color: 'gainsboro',
+        // padding: 20,
+        // textAlign: 'center',
+        // color: 'gainsboro',
     }}
     >Error 404: сторінка не знайдена {''}
-        <span role='img' aria-label="sheep">
+        {/* <span role='img' aria-label="sheep">
         😮
-        </span>
+        </span> */}
     </h1>
 };
 

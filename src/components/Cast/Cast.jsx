@@ -16,23 +16,27 @@ function Cast () {
     const {movieId} = useParams();
 
     useEffect (()=>{
-        fetchData()
-       // eslint-disable-next-line
-    }, []);
-
-    const fetchData = async() => {
-        setIsLoading(true);
-
-        try{
-            const {cast} = await api.fetchCast(movieId);
-            setActors(cast);
-        }catch(error) {
-            console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
-            setError(error.message);
-        }finally{
-            setIsLoading(false);
+        if (!movieId) {
+            return
         }
-    };
+        const fetchData = async() => {
+            setIsLoading(true);
+    
+            try{
+                const {cast} = await api.fetchCast(movieId);
+                setActors(cast);
+            }catch(error) {
+                console.error('Щось відбулося не так із запитом до відеотеки. подробиці помилки тут :', error);
+                setError(error.message);
+            }finally{
+                setIsLoading(false);
+            }
+        };
+        fetchData()
+
+    }, [movieId]);
+
+
 
 
     return (

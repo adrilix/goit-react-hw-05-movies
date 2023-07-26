@@ -5,4 +5,6 @@ export const MessageStyled = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    color: lightgrey;
+    font-size: 10px;
 `

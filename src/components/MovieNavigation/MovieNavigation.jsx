@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import PropTypes from 'prop-types';
 import { FaChevronRight } from "react-icons/fa";
 import { AdditionalTitleStyled, NavigationItemStyled } from "./MovieNavigationStyled";
 import { LoaderSpinner } from "components/Loader/Loader";
@@ -32,8 +31,5 @@ const MovieNavigation = () => {
     )
 }
 
-MovieNavigation.propTypes = {
-    subLocation: PropTypes.object,
-}
 
 export default MovieNavigation;
