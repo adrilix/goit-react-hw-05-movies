@@ -67,8 +67,5 @@ function Cast () {
     )
 }
 
-Cast.propTypes = {
-    movieId: PropTypes.object,
-}
 
 export default Cast;
